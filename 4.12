@@ -1,0 +1,39 @@
+1) HTML: talk abot HTML5 Boilerplate.
+
+It includes the default css on some HTML elements. In the previous time, web developers can only use the html to display websites' layout without using CSS.
+
+2) CSS: how to draw a triangle with css?
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 60px solid green;
+}
+
+3) JS: how to get a file's extension name?
+
+let filename = "example.jpg";
+let extension = filename.split(".").pop();  //split the string start at the "."'s position into a new array = ["example", "jpg"]; then use the array.pop() get the last item from the array.
+console.log(extension)  // jpg.
+
+what is the "split()" method?
+
+The split() method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array.
+
+eg/:
+
+const str = 'The quick brown fox jumps over the lazy dog.';  //string
+
+const words = str.split(' '); //split the string sentence by the " (blank-space)" into an array = ["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"];
+console.log(words[3]);
+// expected output: "fox"
+
+const chars = str.split('');  //split the string sentence to single-characters array.
+console.log(chars[8]);
+// expected output: "k"
+
+const strCopy = str.split();  //split the string to a new array but keep the values.
+console.log(strCopy);
+// expected output: Array ["The quick brown fox jumps over the lazy dog."]
