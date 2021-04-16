@@ -1,0 +1,134 @@
+  
+html: How to stop long taps on the html5?
+
+Can set the css "-webkit-touch-callout : none / -webkit-user-select: none" on the element which you don't want the long-tap to fired.
+(But when it deal with Wechat app, only set the "-webkit-touch-callout: none" can't satisfy what we want, also need to set "pointer-events: none;")
+
+// forbid the long-tap to save the photo:
+img {
+  -webkit-touch-callout: none;
+  pointer-events: none; // if dealing with wechat app, also need to add this line;
+}
+ 
+// forbid the long-tap to select character:
+div {
+  -webkit-user-select: none;
+}
+ 
+// forbid the long-tap to call out the system menu:
+div {
+  -webkit-touch-callout: none;
+}
+
+_______________________________________________
+
+CSS: How to animate the underline with CSS?
+
+use the "transform and transithon"/the "animation" to make it animate.
+
+eg/:  use the "transform and transition" method:
+
+	<style>
+		/*set the former "aref" element's underline to none*/
+    
+		a,a:link,a:visited,a:focus{
+			text-decoration:none;color:#000;
+		}
+    
+		/*set a direction for the new underline*/
+		.left-to-right{
+			position:relative;
+		}
+    
+		/*use the puesdo-class to draw an underline*/
+		/*css3为了区别伪类选择器把::改为:,使用:也会自动转为::*/
+    
+		.left-to-right::after{
+			content:'';
+			display:block;
+      
+			/*set the new underline*/
+			width:0;
+			height:3px;
+			position:absolute;
+			left:0;
+			bottom:-10px;
+			background:#000;
+      
+			/*set the animate for the underline*/
+			transition:all 0.3s ease-in-out;
+		}
+		.left-to-right:hover::after{
+			width:100%;
+		}
+	</style>
+  
+  eg/:  use the "animation" method:
+  
+  	<style>
+		/*set the former "aref" element's underline to none*/
+    
+		a,a:link,a:visited,a:focus{
+			text-decoration:none;color:#000;
+		}
+    
+		/*set a direction for the new underline*/
+		.left-to-right{
+			position:relative;
+		}
+    
+		/*use the puesdo-class to draw an underline*/
+		/*css3为了区别伪类选择器把::改为:,使用:也会自动转为::*/
+    
+		.left-to-right::after{
+			content:'';
+			display:block;
+      
+			/*set the new underline*/
+			width:0;
+			height:3px;
+			position:absolute;
+			left:0;
+			bottom:-10px;
+			background:#000;
+      animation-name: example;
+      animation-duration: 4s;
+      animation-iteration-count: 2; 
+      animation-direction: alternate-reverse;  
+      
+			/*set the animate for the underline*/
+      
+      @keyframes example {
+        0%   {left:0px; top:0px;}
+        25%  {left:200px; top:0px;}
+        50%  {left:200px; top:200px;}
+        75%  {left:0px; top:200px;}
+        100% {left:0px; top:0px;}
+      }
+      </style>
+
+_______________________________________________
+
+JS: What are the results of "valueOf" and "toString" for {} and []?
+
+var arr = [1,2,3]; 
+alert(Array.isArray(arr.valueOf()));  // true
+alert(Array.isArray(arr.toString()));  // false
+
+Why will this happened? it is because after accessed by "valueOf()" it will still return an array.
+But when this array will return a alert happens, it will called the "toString()" function.
+
+So, that means "valueOf()" is not the same as the "toString()", the "valueOf()" is indirectly called the "toString()" function.
+
+if we further test the: 1 2 3 4 5
+
+var arr = [1,2,3]; 
+arr.toString = function () { 
+  alert("call the 'toString()' function"); } 
+  alert(arr.valueOf());  // "call the 'toString()' function"
+  
+"ValueOf()" means to return the original value that best suits the object type, while "toString()" returns the original value in that object type as a string.
+
+{} 的 valueOf 结果为 {} ，toString 的结果为 "[object Object]"
+
+[] 的 valueOf 结果为 [] ，toString 的结果为 ""
