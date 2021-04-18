@@ -1,0 +1,6 @@
+1） When should we use "var/let/const"?
+
+Once we assigned a variable and won't change it anymore, we should use "const" to set that variable;
+When the variable still would be change after then, then we should use "let" to set it, it's not recommand to use "var".
+
+
